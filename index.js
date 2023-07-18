@@ -20,5 +20,4 @@ app.use('/employee', empRouter);
 app.use('/projects', proRouter);
 app.use('/team', tmRouter);
 
-
-    
+app.listen(3000, () => console.log(`Server running on port ${PORT}`));
