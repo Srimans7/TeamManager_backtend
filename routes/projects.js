@@ -34,7 +34,7 @@ router.patch(('/:id'), async (req, res) => {
     try {
         const updated = await empModel.updateOne(
             { Id: String(req.params.id) },
-            { duedate: req.body.duedate }
+            { client: req.body.client, name: req.body.name }
         );
         res.status(200).json(updated);
     } catch (err) {
