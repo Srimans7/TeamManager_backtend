@@ -1,17 +1,17 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const empModel = require('../models/employee.js');
+const empModel = require('../models/team.js');
+ 
 
-
- router.get('/',(req, res) => {
-        async function run() {
-            try {
-                const allItem = await empModel.find({});
-                res.json(allItem);
-            } catch (err) { res.json(err.message) }
-        }
-        run();
-}); 
+router.get('/', (req, res) => {
+    async function run() {
+        try {
+            const allItem = await empModel.find({});
+            res.json(allItem);
+        } catch (err) { res.json(err.message) }
+    }
+    run();
+});
 
 router.post('/', async (req, res) => {
     try {
@@ -19,8 +19,8 @@ router.post('/', async (req, res) => {
         const newItem = new empModel({
             Id: count,
             name: req.body.name,
-            role: req.body.role,
-            email: req.body.email,
+            project: req.body.project,
+            member: req.body.member,
 
         })
         //save this item in database
@@ -35,7 +35,7 @@ router.patch(('/:id'), async (req, res) => {
     try {
         const updated = await empModel.updateOne(
             { Id: String(req.params.id) },
-            { role: req.body.role, name: req.body.name,  email: req.body.email }
+            {project: req.body.project, name: req.body.name, member: req.body.member }
         );
         res.status(200).json(updated);
     } catch (err) {
